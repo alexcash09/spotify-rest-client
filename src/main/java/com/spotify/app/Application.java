@@ -21,18 +21,17 @@ public class Application {
 		HttpGet request = new HttpGet(url);
 
 		try {
-			// add accept request header
+			//add accept request header
 			request.addHeader("accept", "application/json");
 			HttpResponse response = client.execute(request);
 
 			System.out.println("Response Code : "
 					+ response.getStatusLine().getStatusCode());
-			
+
+			//convert the json string to an Artist 
 			Gson gson = new Gson();
 			System.out.println(gson.fromJson(inputStreamToString(response.getEntity().getContent()), Artist.class));
 			
-			
-			//System.out.println(inputStreamToString(response.getEntity().getContent()));
 
 		} catch (UnsupportedOperationException e1) {
 			// TODO Auto-generated catch block
